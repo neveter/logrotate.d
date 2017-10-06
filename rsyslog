@@ -1,0 +1,19 @@
+/var/log/maillog
+/var/log/cron
+/var/log/secure
+/var/log/boot.log
+/var/log/messages
+/var/log/iptables.log
+{
+  rotate 32
+  daily
+  missingok
+  notifempty
+
+  minsize 10M
+  maxsize 512M
+
+  postrotate
+    invoke-rc.d rsyslog rotate > /dev/null
+  endscript
+}
